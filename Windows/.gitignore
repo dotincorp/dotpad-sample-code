@@ -1,0 +1,11 @@
+
+*.aps
+*.dll
+
+DemoApp/.vs
+DemoApp/x64
+DemoApp/DemoApp/x64
+DemoApp/DemoApp/Debug
+DemoApp/DemoApp/Release
+
+DemoApp/SDK

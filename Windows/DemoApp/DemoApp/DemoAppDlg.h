@@ -1,0 +1,74 @@
+﻿
+// DemoAppDlg.h: 헤더 파일
+//
+
+#pragma once
+
+#include <string>
+
+#include "dot_pad_sdk.h"
+
+
+using namespace DOT_PAD_SDK_API;
+
+
+class CDemoAppDlg : public CDialogEx {
+public:
+	CDemoAppDlg(CWnd* pParent = nullptr);
+
+#ifdef AFX_DESIGN_TIME
+	enum { IDD = IDD_DEMOAPP_DIALOG };
+#endif
+
+protected:
+	virtual void DoDataExchange(CDataExchange* pDX);
+
+protected:
+	HICON m_hIcon;
+
+	virtual BOOL OnInitDialog();
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
+	afx_msg void OnPaint();
+	afx_msg HCURSOR OnQueryDragIcon();
+	afx_msg void OnClose();
+	DECLARE_MESSAGE_MAP()
+
+	void LoadDotPadDLL();
+	void FreeDotPadDLL();
+
+	HINSTANCE m_hDotPadDLL;
+
+	DOT_PAD_INIT_FUNC dot_pad_init;
+	DOT_PAD_DEINIT_FUNC dot_pad_deinit;
+	DOT_PAD_DISPLAY_FUNC dot_pad_display;
+	DOT_PAD_DISPLAY_DATA_FUNC dot_pad_display_data;
+	DOT_PAD_RESET_DISPLAY_FUNC dot_pad_reset_display;
+	DOT_PAD_BRAILLE_DISPLAY_FUNC dot_pad_braille_display;
+	DOT_PAD_BRAILLE_ASCII_DISPLAY_FUNC dot_pad_braille_ascii_display;
+	DOT_PAD_RESET_BRAILLE_DISPLAY_FUNC dot_pad_reset_braille_display;
+	DOT_PAD_SEND_KEY_FUNC dot_pad_send_key;
+	DOT_PAD_REGISTER_CALLBACK_FUNC dot_pad_register_callback;
+public:
+	CString strPathName = NULL;
+	CString strFileName = NULL;
+	std::string displayFilePathName;
+
+	CEdit m_editCOMPORT;
+	CEdit m_editDisplayFile;
+	CEdit m_editBrailleDisplayData;
+
+	afx_msg void OnBnClickedButtonInit();
+	afx_msg void OnBnClickedButtonDeinit();
+	afx_msg void OnBnClickedButtonUpData();
+	afx_msg void OnBnClickedButtonDownData();
+	afx_msg void OnBnClickedButtonDisplayFileOpen();
+	afx_msg void OnBnClickedButtonDisplay();
+	afx_msg void OnBnClickedButtonStringDisplay();
+	afx_msg void OnBnClickedButtonAsciiDisplay();
+	afx_msg void OnBnClickedButtonReset();
+	afx_msg void OnBnClickedButtonPrev();
+	afx_msg void OnBnClickedButtonNext();
+};
+
+void CALLBACK DisplayDialogBoxByKeyNoti(const int key);
