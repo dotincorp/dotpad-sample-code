@@ -43,12 +43,14 @@ protected:
 	DOT_PAD_DEINIT_FUNC dot_pad_deinit;
 	DOT_PAD_DISPLAY_FUNC dot_pad_display;
 	DOT_PAD_DISPLAY_DATA_FUNC dot_pad_display_data;
+	DOT_PAD_DISPLAY_DATA_PART_FUNC dot_pad_display_data_part;
 	DOT_PAD_RESET_DISPLAY_FUNC dot_pad_reset_display;
 	DOT_PAD_BRAILLE_DISPLAY_FUNC dot_pad_braille_display;
 	DOT_PAD_BRAILLE_ASCII_DISPLAY_FUNC dot_pad_braille_ascii_display;
 	DOT_PAD_RESET_BRAILLE_DISPLAY_FUNC dot_pad_reset_braille_display;
 	DOT_PAD_SEND_KEY_FUNC dot_pad_send_key;
-	DOT_PAD_REGISTER_CALLBACK_FUNC dot_pad_register_callback;
+	DOT_PAD_REGISTER_KEY_CALLBACK_FUNC dot_pad_register_key_callback;
+	DOT_PAD_REGISTER_DISPLAY_CALLBACK_FUNC dot_pad_register_display_callback;
 public:
 	CString strPathName = NULL;
 	CString strFileName = NULL;
@@ -57,6 +59,9 @@ public:
 	CEdit m_editCOMPORT;
 	CEdit m_editDisplayFile;
 	CEdit m_editBrailleDisplayData;
+	CEdit m_editDisplayDataPartData;
+	CEdit m_editDisplayDataPartLength;
+	CEdit m_editDisplayDataPartStartIdx;
 
 	afx_msg void OnBnClickedButtonInit();
 	afx_msg void OnBnClickedButtonDeinit();
@@ -69,6 +74,10 @@ public:
 	afx_msg void OnBnClickedButtonReset();
 	afx_msg void OnBnClickedButtonPrev();
 	afx_msg void OnBnClickedButtonNext();
+	afx_msg void OnBnClickedButtonDisplayDataPartDisplay();
+	afx_msg void OnBnClickedButtonUpRefresh();
+	afx_msg void OnBnClickedButtonDownRefresh();
 };
 
 void CALLBACK DisplayDialogBoxByKeyNoti(const int key);
+void CALLBACK DisplayDialogBoxByDisplayComplete(void);
