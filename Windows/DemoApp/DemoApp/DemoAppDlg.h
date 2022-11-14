@@ -49,6 +49,7 @@ protected:
 	DOT_PAD_BRAILLE_ASCII_DISPLAY_FUNC dot_pad_braille_ascii_display;
 	DOT_PAD_RESET_BRAILLE_DISPLAY_FUNC dot_pad_reset_braille_display;
 	DOT_PAD_SEND_KEY_FUNC dot_pad_send_key;
+	DOT_PAD_GET_DISPLAY_INFO_FUNC dot_pad_get_display_info;
 	DOT_PAD_REGISTER_KEY_CALLBACK_FUNC dot_pad_register_key_callback;
 	DOT_PAD_REGISTER_DISPLAY_CALLBACK_FUNC dot_pad_register_display_callback;
 public:
@@ -77,6 +78,7 @@ public:
 	afx_msg void OnBnClickedButtonDisplayDataPartDisplay();
 	afx_msg void OnBnClickedButtonUpRefresh();
 	afx_msg void OnBnClickedButtonDownRefresh();
+	afx_msg void OnBnClickedButtonDisplayInfo();
 };
 
 void CALLBACK DisplayDialogBoxByKeyNoti(const int key);

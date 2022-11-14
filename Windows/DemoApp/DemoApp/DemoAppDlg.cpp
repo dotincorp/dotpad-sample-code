@@ -79,6 +79,7 @@ BEGIN_MESSAGE_MAP(CDemoAppDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON_DISPLAY_DATA_PART_DISPLAY, &CDemoAppDlg::OnBnClickedButtonDisplayDataPartDisplay)
 	ON_BN_CLICKED(IDC_BUTTON_UP_REFRESH, &CDemoAppDlg::OnBnClickedButtonUpRefresh)
 	ON_BN_CLICKED(IDC_BUTTON_DOWN_REFRESH, &CDemoAppDlg::OnBnClickedButtonDownRefresh)
+	ON_BN_CLICKED(IDC_BUTTON_DISPLAY_INFO, &CDemoAppDlg::OnBnClickedButtonDisplayInfo)
 END_MESSAGE_MAP()
 
 
@@ -202,6 +203,7 @@ void CDemoAppDlg::LoadDotPadDLL() {
 	dot_pad_braille_ascii_display = (DOT_PAD_BRAILLE_ASCII_DISPLAY_FUNC)GetProcAddress(m_hDotPadDLL, "DOT_PAD_BRAILLE_ASCII_DISPLAY");
 	dot_pad_reset_braille_display = (DOT_PAD_RESET_BRAILLE_DISPLAY_FUNC)GetProcAddress(m_hDotPadDLL, "DOT_PAD_RESET_BRAILLE_DISPLAY");
 	dot_pad_send_key = (DOT_PAD_SEND_KEY_FUNC)GetProcAddress(m_hDotPadDLL, "DOT_PAD_SEND_KEY");
+	dot_pad_get_display_info = (DOT_PAD_GET_DISPLAY_INFO_FUNC)GetProcAddress(m_hDotPadDLL, "DOT_PAD_GET_DISPLAY_INFO");
 	dot_pad_register_key_callback = (DOT_PAD_REGISTER_KEY_CALLBACK_FUNC)GetProcAddress(m_hDotPadDLL, "DOT_PAD_REGISTER_KEY_CALLBACK");
 	dot_pad_register_display_callback = (DOT_PAD_REGISTER_DISPLAY_CALLBACK_FUNC)GetProcAddress(m_hDotPadDLL, "DOT_PAD_REGISTER_DISPLAY_CALLBACK");
 
@@ -234,6 +236,9 @@ void CDemoAppDlg::LoadDotPadDLL() {
 	}
 	if (dot_pad_send_key == NULL) {
 		AfxMessageBox(_T("Can not find funtion DOT_PAD_SEND_KEY_FUNC in DotPadSDK.dll!"));
+	}
+	if (dot_pad_get_display_info == NULL) {
+		AfxMessageBox(_T("Can not find funtion DOT_PAD_GET_DISPLAY_INFO_FUNC in DotPadSDK.dll!"));
 	}
 	if (dot_pad_register_key_callback == NULL) {
 		AfxMessageBox(_T("Can not find funtion DOT_PAD_REGISTER_KEY_CALLBACK_FUNC in DotPadSDK.dll!"));
@@ -640,5 +645,29 @@ void CDemoAppDlg::OnBnClickedButtonDownRefresh() {
 	}
 	else if (error != DOT_ERROR_NONE) {
 		AfxMessageBox(_T("Display failed!!"), MB_OK);
+	}
+}
+
+
+void CALLBACK DisplayDialogBoxByDisplayInfo(const int numRows, const int numCols) {
+	CString msg;
+	msg.Format(_T("Rows: %d / Cols: %d"), numRows, numCols);
+	AfxMessageBox(msg);
+}
+
+
+void CDemoAppDlg::OnBnClickedButtonDisplayInfo() {
+	if (dot_pad_get_display_info == NULL) {
+		CString str;
+		str.Format(_T("Loading DLL is fail"));
+		AfxMessageBox(str);
+
+		return;
+	}
+
+	DOT_PAD_SDK_ERROR error = dot_pad_get_display_info(DisplayDialogBoxByDisplayInfo);
+
+	if (error != DOT_ERROR_NONE) {
+		AfxMessageBox(_T("Display info failed!!"), MB_OK);
 	}
 }
