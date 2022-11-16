@@ -29,8 +29,9 @@
 #define IDC_EDIT_DISPLAY_DATA_PART_START_IDX 1018
 #define IDC_BUTTON_UP_REFRESH           1019
 #define IDC_BUTTON_DOWN_REFRESH         1020
-#define IDC_BUTTON1                     1021
 #define IDC_BUTTON_DISPLAY_INFO         1021
+#define IDC_BUTTON_FIRMWARE_VERSION     1022
+#define IDC_BUTTON_DEVICE_NAME          1023
 
 // Next default values for new objects
 // 
@@ -38,7 +39,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        130
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1022
+#define _APS_NEXT_CONTROL_VALUE         1025
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

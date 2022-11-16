@@ -80,6 +80,8 @@ BEGIN_MESSAGE_MAP(CDemoAppDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON_UP_REFRESH, &CDemoAppDlg::OnBnClickedButtonUpRefresh)
 	ON_BN_CLICKED(IDC_BUTTON_DOWN_REFRESH, &CDemoAppDlg::OnBnClickedButtonDownRefresh)
 	ON_BN_CLICKED(IDC_BUTTON_DISPLAY_INFO, &CDemoAppDlg::OnBnClickedButtonDisplayInfo)
+	ON_BN_CLICKED(IDC_BUTTON_FIRMWARE_VERSION, &CDemoAppDlg::OnBnClickedButtonFirmwareVersion)
+	ON_BN_CLICKED(IDC_BUTTON_DEVICE_NAME, &CDemoAppDlg::OnBnClickedButtonDeviceName)
 END_MESSAGE_MAP()
 
 
@@ -203,6 +205,8 @@ void CDemoAppDlg::LoadDotPadDLL() {
 	dot_pad_braille_ascii_display = (DOT_PAD_BRAILLE_ASCII_DISPLAY_FUNC)GetProcAddress(m_hDotPadDLL, "DOT_PAD_BRAILLE_ASCII_DISPLAY");
 	dot_pad_reset_braille_display = (DOT_PAD_RESET_BRAILLE_DISPLAY_FUNC)GetProcAddress(m_hDotPadDLL, "DOT_PAD_RESET_BRAILLE_DISPLAY");
 	dot_pad_send_key = (DOT_PAD_SEND_KEY_FUNC)GetProcAddress(m_hDotPadDLL, "DOT_PAD_SEND_KEY");
+	dot_pad_get_fw_version = (DOT_PAD_GET_FW_VERSION_FUNC)GetProcAddress(m_hDotPadDLL, "DOT_PAD_GET_FW_VERSION");
+	dot_pad_get_device_name = (DOT_PAD_GET_DEVICE_NAME_FUNC)GetProcAddress(m_hDotPadDLL, "DOT_PAD_GET_DEVICE_NAME");
 	dot_pad_get_display_info = (DOT_PAD_GET_DISPLAY_INFO_FUNC)GetProcAddress(m_hDotPadDLL, "DOT_PAD_GET_DISPLAY_INFO");
 	dot_pad_register_key_callback = (DOT_PAD_REGISTER_KEY_CALLBACK_FUNC)GetProcAddress(m_hDotPadDLL, "DOT_PAD_REGISTER_KEY_CALLBACK");
 	dot_pad_register_display_callback = (DOT_PAD_REGISTER_DISPLAY_CALLBACK_FUNC)GetProcAddress(m_hDotPadDLL, "DOT_PAD_REGISTER_DISPLAY_CALLBACK");
@@ -237,6 +241,12 @@ void CDemoAppDlg::LoadDotPadDLL() {
 	if (dot_pad_send_key == NULL) {
 		AfxMessageBox(_T("Can not find funtion DOT_PAD_SEND_KEY_FUNC in DotPadSDK.dll!"));
 	}
+	if (dot_pad_get_fw_version == NULL) {
+		AfxMessageBox(_T("Can not find funtion DOT_PAD_GET_FW_VERSION in DotPadSDK.dll!"));
+	}
+	if (dot_pad_get_device_name == NULL) {
+		AfxMessageBox(_T("Can not find funtion DOT_PAD_GET_DEVICE_NAME in DotPadSDK.dll!"));
+	}
 	if (dot_pad_get_display_info == NULL) {
 		AfxMessageBox(_T("Can not find funtion DOT_PAD_GET_DISPLAY_INFO_FUNC in DotPadSDK.dll!"));
 	}
@@ -265,6 +275,8 @@ void CDemoAppDlg::FreeDotPadDLL() {
 	dot_pad_braille_ascii_display = NULL;
 	dot_pad_reset_braille_display = NULL;
 	dot_pad_send_key = NULL;
+	dot_pad_get_fw_version = NULL;
+	dot_pad_get_device_name = NULL;
 	dot_pad_register_key_callback = NULL;
 	dot_pad_register_display_callback = NULL;
 }
@@ -418,7 +430,7 @@ void CDemoAppDlg::OnBnClickedButtonStringDisplay() {
 
 	char* in_edCtrlChar = LPSTR(LPCTSTR(in_edCtrl));
 
-	wchar_t* in_edCtrlUTF16 = new wchar_t[in_edCtrl.GetLength() + 1]{ 0 };
+	wchar_t* in_edCtrlUTF16 = new wchar_t[in_edCtrl.GetLength() + 1] { 0 };
 	Convert1ByteTo2Byte(in_edCtrlUTF16, in_edCtrlChar, in_edCtrl.GetLength());
 
 	if (dot_pad_braille_display == NULL) {
@@ -462,7 +474,7 @@ void CDemoAppDlg::OnBnClickedButtonAsciiDisplay() {
 		return;
 	}
 
-	char* in_edCtrlChar = new char[in_edCtrl.GetLength() + 1]{ 0 };
+	char* in_edCtrlChar = new char[in_edCtrl.GetLength() + 1] { 0 };
 
 	Convert2ByteCharTo1BytesChar(in_edCtrlChar, in_edCtrlChar2Byte, (const int)in_edCtrl.GetLength());
 
@@ -649,13 +661,6 @@ void CDemoAppDlg::OnBnClickedButtonDownRefresh() {
 }
 
 
-void CALLBACK DisplayDialogBoxByDisplayInfo(const int numRows, const int numCols) {
-	CString msg;
-	msg.Format(_T("Rows: %d / Cols: %d"), numRows, numCols);
-	AfxMessageBox(msg);
-}
-
-
 void CDemoAppDlg::OnBnClickedButtonDisplayInfo() {
 	if (dot_pad_get_display_info == NULL) {
 		CString str;
@@ -665,9 +670,62 @@ void CDemoAppDlg::OnBnClickedButtonDisplayInfo() {
 		return;
 	}
 
-	DOT_PAD_SDK_ERROR error = dot_pad_get_display_info(DisplayDialogBoxByDisplayInfo);
+	int width = 0, height = 0, braille = 0;
+	DOT_PAD_SDK_ERROR error = dot_pad_get_display_info(&width, &height, &braille);
+
+	CString msg;
+	msg.Format(_T("Width: %d / Height: %d / Braille: %d"), width, height, braille);
+	AfxMessageBox(msg);
 
 	if (error != DOT_ERROR_NONE) {
 		AfxMessageBox(_T("Display info failed!!"), MB_OK);
+	}
+}
+
+
+void CALLBACK DisplayDialogBoxByFirmwareVersion(char* firmwareVersion) {
+	CString msg;
+	msg = (LPSTR)firmwareVersion;
+	AfxMessageBox(msg);
+}
+
+
+void CDemoAppDlg::OnBnClickedButtonFirmwareVersion() {
+	if (dot_pad_get_fw_version == NULL) {
+		CString str;
+		str.Format(_T("Loading DLL is fail"));
+		AfxMessageBox(str);
+
+		return;
+	}
+
+	DOT_PAD_SDK_ERROR error = dot_pad_get_fw_version(DisplayDialogBoxByFirmwareVersion);
+
+	if (error != DOT_ERROR_NONE) {
+		AfxMessageBox(_T("Firmware version failed!!"), MB_OK);
+	}
+}
+
+
+void CALLBACK DisplayDialogBoxByDeviceName(char* deviceName) {
+	CString msg;
+	msg = (LPSTR)deviceName;
+	AfxMessageBox(msg);
+}
+
+
+void CDemoAppDlg::OnBnClickedButtonDeviceName() {
+	if (dot_pad_get_device_name == NULL) {
+		CString str;
+		str.Format(_T("Loading DLL is fail"));
+		AfxMessageBox(str);
+
+		return;
+	}
+
+	DOT_PAD_SDK_ERROR error = dot_pad_get_device_name(DisplayDialogBoxByDeviceName);
+
+	if (error != DOT_ERROR_NONE) {
+		AfxMessageBox(_T("Device name failed!!"), MB_OK);
 	}
 }
