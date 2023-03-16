@@ -2,15 +2,15 @@
 *.aps
 *.dll
 
-DemoApp/.vs
-DemoApp/x64
-DemoApp/Debug
-DemoApp/Release
-DemoApp/DemoApp/x64
-DemoApp/DemoApp/Debug
-DemoApp/DemoApp/Release
-DemoApp/SDK
+DemoApp-C++/.vs
+DemoApp-C++/x64
+DemoApp-C++/Debug
+DemoApp-C++/Release
+DemoApp-C++/DemoApp/x64
+DemoApp-C++/DemoApp/Debug
+DemoApp-C++/DemoApp/Release
+DemoApp-C++/SDK
 
 DemoApp-C#/.vs
-DemoApp-C#/obj
-
+DemoApp-C#/DemoApp/.vs
+DemoApp-C#/DemoApp/obj
