@@ -9,5 +9,8 @@ DemoApp/Release
 DemoApp/DemoApp/x64
 DemoApp/DemoApp/Debug
 DemoApp/DemoApp/Release
-
 DemoApp/SDK
+
+DemoApp-C#/.vs
+DemoApp-C#/obj
+
