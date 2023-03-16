@@ -1,8 +1,8 @@
 # Demo application for calling Windows dotpad SDK - C++
 
 ## Setting
-Before build, the SDK folder should be located at /DemoApp folder like below.
-DotPadSDK library download path : https://github.com/dotincorp/dotpad-sdk-guide
+- Before build, the SDK folder should be located at /DemoApp folder like below.
+- DotPadSDK library download path : https://github.com/dotincorp/dotpad-sdk-guide
 
 ## Directory
 ```
