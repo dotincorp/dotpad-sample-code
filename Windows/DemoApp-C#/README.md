@@ -1,3 +1,19 @@
-# dotpad-sample-code
+# Demo application for calling Windows dotpad SDK - C#
 
-* An app using the DLL from [dotpad-sdk-guide](https://github.com/dotincorp/dotpad-sdk-guide)   
+## Setting
+Before build, DotPadSDK library should be located in /DemoApp/bin/Debug folder like below.
+DotPadSDK library download path : https://github.com/dotincorp/dotpad-sdk-guide
+
+## Directory
+```
+DemoApp
+├── DemoApp.sln
+└── DemoApp
+    └── bin
+        └── Debug
+            ├── DotPadSDK.dll
+            ├── jsoncpp.dll 
+            ├── TTBEngine.dll
+            ├── MeCab.dll
+            └── mecabrc             
+```
