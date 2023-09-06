@@ -64,6 +64,8 @@ namespace demo.app
                     this.buttonKiosk20Disconnect.Enabled = true;
                     this.buttonKiosk20Braille.Enabled = true;
                     this.buttonKiosk20Init.Enabled = true;
+                    this.comboBox_language.Enabled = true;
+                    this.textBox_braille.Enabled = true;
                     this.showMessage("Connection was successful in Kiosk 20 cells.");
                 } else {
                     this.showError("Connection failed in Kiosk 20 cells (error code = " + result + ")");
@@ -115,11 +117,19 @@ namespace demo.app
         private void buttonKiosk20Braille_Click(object sender, EventArgs e)
         {
             this.showMessage("");
+            String brailleText = textBox_braille.Text;
             
             StringBuilder input = new StringBuilder(20);
-            input.Append("abc"); // input data
+            input.Append(brailleText); // input data
 
-            ERROR_CODE result = DotPadSDK.DOT_PAD_BRAILLE_DISPLAY(input, 5); // 0x05(english)
+            String language = comboBox_language.Text;
+            int languageCode = 0X05;
+            if (language == "English") languageCode = 0X05;
+            else if (language == "Korean") languageCode = 0x0A;
+            else if (language == "Japanese") languageCode = 0x09;
+            this.showMessage("languageCode=" + languageCode);
+
+            ERROR_CODE result = DotPadSDK.DOT_PAD_BRAILLE_DISPLAY(input, languageCode); // 0x05(english)
             if (result == ERROR_CODE.DOT_ERROR_NONE) {
                 this.showMessage("Braille print was successful in Kiosk 20 cells.");
             } else {
@@ -199,6 +209,8 @@ namespace demo.app
                 this.buttonKiosk20Disconnect.Enabled = false;
                 this.buttonKiosk20Braille.Enabled = false;
                 this.buttonKiosk20Init.Enabled = false;
+                this.comboBox_language.Enabled = false;
+                this.textBox_braille.Enabled = false;
                 this.showMessage("Device disconnection was successful in Kiosk 20 cells.");
             } else {
                 this.showError("Device disconnection was failed in Kiosk 20 cells. (error code=" + result + ")");

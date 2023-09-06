@@ -28,6 +28,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox_language = new System.Windows.Forms.ComboBox();
+            this.textBox_braille = new System.Windows.Forms.TextBox();
             this.comboBox20Port = new System.Windows.Forms.ComboBox();
             this.buttonKiosk20Disconnect = new System.Windows.Forms.Button();
             this.buttonKiosk20Connect = new System.Windows.Forms.Button();
@@ -55,6 +57,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBox_language);
+            this.groupBox1.Controls.Add(this.textBox_braille);
             this.groupBox1.Controls.Add(this.comboBox20Port);
             this.groupBox1.Controls.Add(this.buttonKiosk20Disconnect);
             this.groupBox1.Controls.Add(this.buttonKiosk20Connect);
@@ -62,10 +66,30 @@
             this.groupBox1.Controls.Add(this.buttonKiosk20Braille);
             this.groupBox1.Location = new System.Drawing.Point(22, 73);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(417, 101);
+            this.groupBox1.Size = new System.Drawing.Size(417, 144);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Kiosk 20 cells";
+            // 
+            // comboBox_language
+            // 
+            this.comboBox_language.Enabled = false;
+            this.comboBox_language.FormattingEnabled = true;
+            this.comboBox_language.Items.AddRange(new object[] {
+            "Enlish"});
+            this.comboBox_language.Location = new System.Drawing.Point(25, 70);
+            this.comboBox_language.Name = "comboBox_language";
+            this.comboBox_language.Size = new System.Drawing.Size(109, 20);
+            this.comboBox_language.TabIndex = 17;
+            this.comboBox_language.Text = "- Language -";
+            // 
+            // textBox_braille
+            // 
+            this.textBox_braille.Enabled = false;
+            this.textBox_braille.Location = new System.Drawing.Point(25, 96);
+            this.textBox_braille.Name = "textBox_braille";
+            this.textBox_braille.Size = new System.Drawing.Size(366, 21);
+            this.textBox_braille.TabIndex = 16;
             // 
             // comboBox20Port
             // 
@@ -79,9 +103,9 @@
             // buttonKiosk20Disconnect
             // 
             this.buttonKiosk20Disconnect.Enabled = false;
-            this.buttonKiosk20Disconnect.Location = new System.Drawing.Point(282, 20);
+            this.buttonKiosk20Disconnect.Location = new System.Drawing.Point(282, 23);
             this.buttonKiosk20Disconnect.Name = "buttonKiosk20Disconnect";
-            this.buttonKiosk20Disconnect.Size = new System.Drawing.Size(109, 27);
+            this.buttonKiosk20Disconnect.Size = new System.Drawing.Size(108, 24);
             this.buttonKiosk20Disconnect.TabIndex = 14;
             this.buttonKiosk20Disconnect.Text = "Disconnect";
             this.buttonKiosk20Disconnect.UseVisualStyleBackColor = true;
@@ -89,9 +113,9 @@
             // 
             // buttonKiosk20Connect
             // 
-            this.buttonKiosk20Connect.Location = new System.Drawing.Point(154, 20);
+            this.buttonKiosk20Connect.Location = new System.Drawing.Point(154, 22);
             this.buttonKiosk20Connect.Name = "buttonKiosk20Connect";
-            this.buttonKiosk20Connect.Size = new System.Drawing.Size(108, 27);
+            this.buttonKiosk20Connect.Size = new System.Drawing.Size(108, 24);
             this.buttonKiosk20Connect.TabIndex = 13;
             this.buttonKiosk20Connect.Text = "Connect";
             this.buttonKiosk20Connect.UseVisualStyleBackColor = true;
@@ -100,9 +124,9 @@
             // buttonKiosk20Init
             // 
             this.buttonKiosk20Init.Enabled = false;
-            this.buttonKiosk20Init.Location = new System.Drawing.Point(153, 58);
+            this.buttonKiosk20Init.Location = new System.Drawing.Point(282, 66);
             this.buttonKiosk20Init.Name = "buttonKiosk20Init";
-            this.buttonKiosk20Init.Size = new System.Drawing.Size(109, 27);
+            this.buttonKiosk20Init.Size = new System.Drawing.Size(108, 24);
             this.buttonKiosk20Init.TabIndex = 12;
             this.buttonKiosk20Init.Text = "Initialize Cells";
             this.buttonKiosk20Init.UseVisualStyleBackColor = true;
@@ -111,9 +135,9 @@
             // buttonKiosk20Braille
             // 
             this.buttonKiosk20Braille.Enabled = false;
-            this.buttonKiosk20Braille.Location = new System.Drawing.Point(25, 58);
+            this.buttonKiosk20Braille.Location = new System.Drawing.Point(153, 68);
             this.buttonKiosk20Braille.Name = "buttonKiosk20Braille";
-            this.buttonKiosk20Braille.Size = new System.Drawing.Size(109, 27);
+            this.buttonKiosk20Braille.Size = new System.Drawing.Size(109, 22);
             this.buttonKiosk20Braille.TabIndex = 10;
             this.buttonKiosk20Braille.Text = "Braille Data";
             this.buttonKiosk20Braille.UseVisualStyleBackColor = true;
@@ -127,7 +151,7 @@
             this.groupBox3.Controls.Add(this.buttonKiosk300Init);
             this.groupBox3.Controls.Add(this.buttonKiosk300Dtm);
             this.groupBox3.Controls.Add(this.buttonKiosk300Print);
-            this.groupBox3.Location = new System.Drawing.Point(22, 188);
+            this.groupBox3.Location = new System.Drawing.Point(22, 226);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(417, 103);
             this.groupBox3.TabIndex = 10;
@@ -148,7 +172,7 @@
             this.buttonKiosk300Disconnect.Enabled = false;
             this.buttonKiosk300Disconnect.Location = new System.Drawing.Point(282, 20);
             this.buttonKiosk300Disconnect.Name = "buttonKiosk300Disconnect";
-            this.buttonKiosk300Disconnect.Size = new System.Drawing.Size(109, 27);
+            this.buttonKiosk300Disconnect.Size = new System.Drawing.Size(109, 24);
             this.buttonKiosk300Disconnect.TabIndex = 17;
             this.buttonKiosk300Disconnect.Text = "Disconnect";
             this.buttonKiosk300Disconnect.UseVisualStyleBackColor = true;
@@ -158,7 +182,7 @@
             // 
             this.buttonKiosk300Connect.Location = new System.Drawing.Point(154, 20);
             this.buttonKiosk300Connect.Name = "buttonKiosk300Connect";
-            this.buttonKiosk300Connect.Size = new System.Drawing.Size(108, 27);
+            this.buttonKiosk300Connect.Size = new System.Drawing.Size(108, 24);
             this.buttonKiosk300Connect.TabIndex = 16;
             this.buttonKiosk300Connect.Text = "Connect";
             this.buttonKiosk300Connect.UseVisualStyleBackColor = true;
@@ -169,7 +193,7 @@
             this.buttonKiosk300Init.Enabled = false;
             this.buttonKiosk300Init.Location = new System.Drawing.Point(282, 58);
             this.buttonKiosk300Init.Name = "buttonKiosk300Init";
-            this.buttonKiosk300Init.Size = new System.Drawing.Size(109, 28);
+            this.buttonKiosk300Init.Size = new System.Drawing.Size(109, 25);
             this.buttonKiosk300Init.TabIndex = 9;
             this.buttonKiosk300Init.Text = "Initialize Cells";
             this.buttonKiosk300Init.UseVisualStyleBackColor = true;
@@ -180,7 +204,7 @@
             this.buttonKiosk300Dtm.Enabled = false;
             this.buttonKiosk300Dtm.Location = new System.Drawing.Point(153, 58);
             this.buttonKiosk300Dtm.Name = "buttonKiosk300Dtm";
-            this.buttonKiosk300Dtm.Size = new System.Drawing.Size(109, 28);
+            this.buttonKiosk300Dtm.Size = new System.Drawing.Size(109, 25);
             this.buttonKiosk300Dtm.TabIndex = 8;
             this.buttonKiosk300Dtm.Text = "Print DTM file";
             this.buttonKiosk300Dtm.UseVisualStyleBackColor = true;
@@ -191,7 +215,7 @@
             this.buttonKiosk300Print.Enabled = false;
             this.buttonKiosk300Print.Location = new System.Drawing.Point(25, 58);
             this.buttonKiosk300Print.Name = "buttonKiosk300Print";
-            this.buttonKiosk300Print.Size = new System.Drawing.Size(109, 28);
+            this.buttonKiosk300Print.Size = new System.Drawing.Size(109, 25);
             this.buttonKiosk300Print.TabIndex = 6;
             this.buttonKiosk300Print.Text = "Print Data";
             this.buttonKiosk300Print.UseVisualStyleBackColor = true;
@@ -205,7 +229,7 @@
             this.groupBox4.Controls.Add(this.buttonDotPad320Init);
             this.groupBox4.Controls.Add(this.buttonDotPad320Dtm);
             this.groupBox4.Controls.Add(this.buttonDotPad320Print);
-            this.groupBox4.Location = new System.Drawing.Point(22, 302);
+            this.groupBox4.Location = new System.Drawing.Point(22, 340);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(417, 107);
             this.groupBox4.TabIndex = 11;
@@ -226,7 +250,7 @@
             this.buttonDotPad320Disconnect.Enabled = false;
             this.buttonDotPad320Disconnect.Location = new System.Drawing.Point(282, 20);
             this.buttonDotPad320Disconnect.Name = "buttonDotPad320Disconnect";
-            this.buttonDotPad320Disconnect.Size = new System.Drawing.Size(109, 27);
+            this.buttonDotPad320Disconnect.Size = new System.Drawing.Size(109, 24);
             this.buttonDotPad320Disconnect.TabIndex = 20;
             this.buttonDotPad320Disconnect.Text = "Disconnect";
             this.buttonDotPad320Disconnect.UseVisualStyleBackColor = true;
@@ -236,7 +260,7 @@
             // 
             this.buttonDotPad320Connect.Location = new System.Drawing.Point(153, 20);
             this.buttonDotPad320Connect.Name = "buttonDotPad320Connect";
-            this.buttonDotPad320Connect.Size = new System.Drawing.Size(109, 27);
+            this.buttonDotPad320Connect.Size = new System.Drawing.Size(109, 24);
             this.buttonDotPad320Connect.TabIndex = 19;
             this.buttonDotPad320Connect.Text = "Connect";
             this.buttonDotPad320Connect.UseVisualStyleBackColor = true;
@@ -247,7 +271,7 @@
             this.buttonDotPad320Init.Enabled = false;
             this.buttonDotPad320Init.Location = new System.Drawing.Point(282, 62);
             this.buttonDotPad320Init.Name = "buttonDotPad320Init";
-            this.buttonDotPad320Init.Size = new System.Drawing.Size(109, 28);
+            this.buttonDotPad320Init.Size = new System.Drawing.Size(109, 25);
             this.buttonDotPad320Init.TabIndex = 9;
             this.buttonDotPad320Init.Text = "Initicalize Cells";
             this.buttonDotPad320Init.UseVisualStyleBackColor = true;
@@ -258,7 +282,7 @@
             this.buttonDotPad320Dtm.Enabled = false;
             this.buttonDotPad320Dtm.Location = new System.Drawing.Point(153, 62);
             this.buttonDotPad320Dtm.Name = "buttonDotPad320Dtm";
-            this.buttonDotPad320Dtm.Size = new System.Drawing.Size(109, 28);
+            this.buttonDotPad320Dtm.Size = new System.Drawing.Size(109, 25);
             this.buttonDotPad320Dtm.TabIndex = 8;
             this.buttonDotPad320Dtm.Text = "Print DTM file";
             this.buttonDotPad320Dtm.UseVisualStyleBackColor = true;
@@ -269,7 +293,7 @@
             this.buttonDotPad320Print.Enabled = false;
             this.buttonDotPad320Print.Location = new System.Drawing.Point(25, 62);
             this.buttonDotPad320Print.Name = "buttonDotPad320Print";
-            this.buttonDotPad320Print.Size = new System.Drawing.Size(109, 28);
+            this.buttonDotPad320Print.Size = new System.Drawing.Size(109, 25);
             this.buttonDotPad320Print.TabIndex = 6;
             this.buttonDotPad320Print.Text = "Print Data";
             this.buttonDotPad320Print.UseVisualStyleBackColor = true;
@@ -290,7 +314,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(462, 450);
+            this.ClientSize = new System.Drawing.Size(464, 468);
             this.Controls.Add(this.labelMessage);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -299,6 +323,7 @@
             this.Text = "Demo App";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -327,6 +352,8 @@
         private System.Windows.Forms.Button buttonDotPad320Disconnect;
         private System.Windows.Forms.Button buttonDotPad320Connect;
         private System.Windows.Forms.Label labelMessage;
+        private System.Windows.Forms.ComboBox comboBox_language;
+        private System.Windows.Forms.TextBox textBox_braille;
     }
 }
 
