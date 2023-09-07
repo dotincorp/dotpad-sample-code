@@ -1,9 +1,8 @@
-# DotPadSDK Demo Application Guide
+# DotPadSDK Sample Code Guide
 ```
-DotPadSDK Demo Application
 ├── Android
 │   ├── 1.1.0
-│   │   ├── DemoApp (release)
+│   │   ├── DemoApp
 │   ├── 2.0.0
 │   │   └── DemoApp
 ├── iOS
