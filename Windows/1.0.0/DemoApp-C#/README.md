@@ -1,4 +1,4 @@
-# C# Demo application for DotPadSDK Windows
+# C# Demo application for Windows from DotPadSDK version 1.0.0
 
 ## Setting
 - Before build, DotPadSDK library should be located in /DemoApp/bin/Debug folder like below.

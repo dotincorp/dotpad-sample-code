@@ -1,4 +1,4 @@
-# C++ Demo application for DotPadSDK Windows
+# C++ Demo application for Windows from DotPadSDK version 1.0.0
 
 ## Setting
 - Before build, the SDK folder should be located at /DemoApp folder like below.
