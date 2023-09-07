@@ -1,2 +1,1 @@
-# DotPadSDK-2.x.x Sample Code
-
+# DotPadSDK 2.0.0 Sample Code for iOS
