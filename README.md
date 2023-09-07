@@ -1,4 +1,9 @@
 # DotPadSDK Sample Code
+
+## Overview
+* An Sample Applicaton using the DotPadSDK from [dotpad-sdk-guide](https://github.com/dotincorp/dotpad-sdk-guide)
+
+## Directory
 ```
 ├── Android
 │   ├── 1.1.0
