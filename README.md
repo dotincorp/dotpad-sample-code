@@ -1,4 +1,4 @@
-# DotPadSDK Sample Code Guide
+# DotPadSDK Sample Code
 ```
 ├── Android
 │   ├── 1.1.0

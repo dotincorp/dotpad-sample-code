@@ -1,2 +1,2 @@
-# DotPadSDK-1.0.0 Sample Code for Windows
+# DotPadSDK 1.0.0 Sample Code for Windows
 
