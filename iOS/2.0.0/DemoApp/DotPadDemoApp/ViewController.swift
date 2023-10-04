@@ -75,7 +75,7 @@ class ViewController: UIViewController, SendDataProtocol {
     }
 
     @IBAction func DisplayText(_ sender: UIButton){
-        DotPadSDK.shared.dotPadAPI.dotPadProcessData.displayTextData(text: padTextField.text!)
+        BrailleString.text = DotPadSDK.shared.dotPadAPI.dotPadProcessData.displayTextData(text: padTextField.text!)
     }
 
     @IBAction func allUp(_ sender: Any) {
