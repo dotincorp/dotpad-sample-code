@@ -8,5 +8,5 @@
 ```
 ├── 1.1.0
 │   ├── DemoApp
-└── 2.0.0  (in development)
+└── 2.0.0 (in development)
 ```
