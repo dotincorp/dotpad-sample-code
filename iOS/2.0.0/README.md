@@ -21,7 +21,7 @@
 3. Connect your device (iPhone, iPad) to your MacBook.
 4. In xcode, specify the target as the connected device and Build.  
     ![Xcode](images/xcode.png)    
-5. Demo app screen
+5. Demo app screen  
    ![iPhone](images/iphone.jpg)  
    ![Dot Pad](images/dotpad.jpg)  
 
