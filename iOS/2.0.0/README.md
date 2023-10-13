@@ -25,7 +25,8 @@
    ![iPhone](images/iphone.jpg)  
    ![Dot Pad](images/dotpad.jpg)  
 
-## Error action
-* Could not find module 'DotPadFrameworks' for target 'arm64-apple-ios-simulator' 
-  - In Xcode, you need to set the target to the actual device, not the emulator.
+## Error Resolution
+* Module not found error  
+  - message : Could not find module 'DotPadFrameworks' for target 'arm64-apple-ios-simulator'   
+  - resolution : In Xcode, you need to set the target to the actual device, not the emulator.  
 
