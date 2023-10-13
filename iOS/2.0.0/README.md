@@ -21,9 +21,9 @@
 3. Connect your device (iPhone, iPad) to your MacBook.
 4. In xcode, specify the target as the connected device.
 5. Build. 
-6. Run screen
-   ![iPhone](images/iphone.jpg)
-   ![Dot Pad](images/dotpad.jpg)
+6. Run screen  
+   ![iPhone](images/iphone.jpg)  
+   ![Dot Pad](images/dotpad.jpg)  
 
 ## Error action
 * Could not find module 'DotPadFrameworks' for target 'arm64-apple-ios-simulator' 
