@@ -19,7 +19,8 @@
 1. Download the source.
 2. Run DemoApp/DotPadDemoApp.xcodeproj.
 3. Connect your device (iPhone, iPad) to your MacBook.
-4. In xcode, specify the target as the connected device.
+4. In xcode, specify the target as the connected device.  
+    ![Xcode](images/xcode.png)  
 5. Build. 
 6. Run screen  
    ![iPhone](images/iphone.jpg)  
