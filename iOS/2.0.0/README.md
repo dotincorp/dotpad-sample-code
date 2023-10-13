@@ -1,4 +1,4 @@
-# DotPadSDK 2.0.0 Sample Code for iOS
+# Sample Code for iOS
 
 ## Directory
 ```
@@ -16,7 +16,7 @@
 ```
 
 ## Execution Order
-1. Download the source.
+1. Download the source. (dotpad-sample-code/iOS/2.0.0)  
 2. Run DemoApp/DotPadDemoApp.xcodeproj.
 3. Connect your device (iPhone, iPad) to your MacBook.
 4. In xcode, specify the target as the connected device and Build.  
