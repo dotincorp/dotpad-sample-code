@@ -1,7 +1,9 @@
-# DotPadSDK Sample Code
+# DotPad SDK Sample Code
 
 ## Overview
-* An Sample Applicaton using the DotPadSDK from [dotpad-sdk-guide](https://github.com/dotincorp/dotpad-sdk-guide)
+* An Sample Applicaton using the DotPad SDK from [dotpad-sdk-guide](https://github.com/dotincorp/dotpad-sdk-guide)
+* You can test DotPad connection and printing with our sample application.
+* We present how to configure the development environment for the sample application.
 
 ## Directory
 ```
@@ -23,3 +25,11 @@
 └──  Linux
      └── 1.0.0 (in development)
 ```
+
+## Development Tools
+| operating system | development tool | development language |
+|----------|----------|----------|
+| Android  | Android Studio   | Kotlin   |
+| iOS   | Xcode  | Swift   |
+| Windows   | Visual Studio  | C++, C#   |
+| Linux   | Visual Studio Code  | C++   |
