@@ -76,12 +76,23 @@
             this.comboBox_language.Enabled = false;
             this.comboBox_language.FormattingEnabled = true;
             this.comboBox_language.Items.AddRange(new object[] {
-            "Enlish"});
+            "Enlish",
+            "Korean",
+            "ChineseTraditional",
+            "ChineseSimplified",
+            "Japanese",
+            "Arabic",
+            "Italian",
+            "Vietnamese",
+            "Uzbek",
+            "Thai",
+            "Greek"});
             this.comboBox_language.Location = new System.Drawing.Point(25, 70);
             this.comboBox_language.Name = "comboBox_language";
             this.comboBox_language.Size = new System.Drawing.Size(109, 20);
             this.comboBox_language.TabIndex = 17;
             this.comboBox_language.Text = "- Language -";
+            this.comboBox_language.SelectedIndexChanged += new System.EventHandler(this.comboBox_language_SelectedIndexChanged);
             // 
             // textBox_braille
             // 
