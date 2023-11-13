@@ -6,7 +6,8 @@
 
 ## Directory
 ```
+├── 1.0.0
+│   ├── DemoApp
 ├── 1.1.0
 │   ├── DemoApp
-└── 2.0.0 (in development)
 ```

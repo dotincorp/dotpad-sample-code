@@ -1,1 +1,0 @@
-# DotPadSDK 2.0.0 Sample Code for Windows
