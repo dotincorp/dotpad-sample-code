@@ -1,4 +1,4 @@
-# DotPadSDK 1.0.0 Sample Code for Windows using C++
+# Sample Code for DotPadSDK-1.0.0
 
 ## Overview
 * An Sample Applicaton using the DotPadSDK from [dotpad-sdk-guide](https://github.com/dotincorp/dotpad-sdk-guide)
