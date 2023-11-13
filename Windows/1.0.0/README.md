@@ -11,3 +11,7 @@
 └── DemoApp-C++
     └── DemoApp
 ```
+## How to build
+1. Run DevmoApp.sin
+2. Visual Studio 2022 > Build > DemoApp Build
+3. Run DemoApp/bin/Debug/DemoApp.exe

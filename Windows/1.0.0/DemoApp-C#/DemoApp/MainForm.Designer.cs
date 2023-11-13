@@ -77,16 +77,7 @@
             this.comboBox_language.FormattingEnabled = true;
             this.comboBox_language.Items.AddRange(new object[] {
             "Enlish",
-            "Korean",
-            "ChineseTraditional",
-            "ChineseSimplified",
-            "Japanese",
-            "Arabic",
-            "Italian",
-            "Vietnamese",
-            "Uzbek",
-            "Thai",
-            "Greek"});
+            "Korean"});
             this.comboBox_language.Location = new System.Drawing.Point(25, 70);
             this.comboBox_language.Name = "comboBox_language";
             this.comboBox_language.Size = new System.Drawing.Size(109, 20);
