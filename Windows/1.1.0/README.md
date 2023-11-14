@@ -1,4 +1,4 @@
-# DotPadSDK 1.0.0 Sample Code for Windows using C++
+# DotPadSDK-1.1.0 Sample Code
 
 ## Overview
 * An Sample Applicaton using the DotPadSDK from [dotpad-sdk-guide](https://github.com/dotincorp/dotpad-sdk-guide)
@@ -8,8 +8,3 @@
 ```
 └── DemoApp-C#
     └── DemoApp
-```
-## How to build
-1. Run DevmoApp.sin
-2. Visual Studio 2022 > Build > DemoApp Build
-3. Run DemoApp/bin/Debug/DemoApp.exe
