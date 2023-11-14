@@ -19,9 +19,9 @@
 │   │   └── DemoApp
 ├── Window
 │    ├── 1.0.0
-│    │   ├── DempApp-C#
-│    │   ├── DempApp-C++
-│    └── 2.0.0 (in development)
+│    │   └── DempApp
+│    └── 1.1.0
+│       └── DempApp
 └──  Linux
      └── 1.0.0 (in development)
 ```
