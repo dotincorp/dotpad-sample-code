@@ -1,10 +1,10 @@
-# Sample Code for DotPadSDK-1.1.0 using C#
+# C# Sample Code for DotPadSDK-1.1.0
+
 
 ## Overview
 * An Sample Applicaton using the DotPadSDK from [dotpad-sdk-guide](https://github.com/dotincorp/dotpad-sdk-guide)
 * Can perform controls on a Dot Pad connected via Serial Port
 
-```
 ## Install
 * Unzip the Japanese dictionary file used by Dotjeom Station. (DemoApp/bin/Debug/ipadic.zip)
 * Unzip the table file used in liblouis Station. (DemoApp/bin/Debug/tables.zip)

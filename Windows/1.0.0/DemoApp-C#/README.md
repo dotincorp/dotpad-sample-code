@@ -1,4 +1,4 @@
-# Sample Code for DotPadSDK-1.0.0 using C#
+# C# Sample Code for DotPadSDK-1.0.0
 
 ## Overview
 * An Sample Applicaton using the DotPadSDK from [dotpad-sdk-guide](https://github.com/dotincorp/dotpad-sdk-guide)

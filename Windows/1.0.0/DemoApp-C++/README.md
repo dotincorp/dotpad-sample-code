@@ -1,4 +1,4 @@
-# Sample Code for DotPadSDK-1.0.0 using C++
+# C++ Sample Code for DotPadSDK-1.0.0
 
 ## Directory
 ```
