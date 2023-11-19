@@ -1,4 +1,4 @@
-# Sample Code for DotPadSDK-1.1.0
+# Sample Code for DotPadSDK-1.1.1
 
 ## Overview
 * An Sample Applicaton using the DotPadSDK from [dotpad-sdk-guide](https://github.com/dotincorp/dotpad-sdk-guide)
@@ -8,6 +8,6 @@
 ```
 ├── 1.0.0
 │   ├── DemoApp
-├── 1.1.0
+├── 1.1.1
 │   ├── DemoApp
 ```
