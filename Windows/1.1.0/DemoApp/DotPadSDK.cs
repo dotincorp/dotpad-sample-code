@@ -5,31 +5,31 @@ namespace demo.app
 {
     public class DotPadSDK
     {
-        [DllImport("DotPadSDK-1.1.1.dll")]
+        [DllImport("DotPadSDK-1.1.0.dll")]
         public static extern ERROR_CODE DOT_PAD_INIT(int portNumber);
 
-        [DllImport("DotPadSDK-1.1.1.dll")]
+        [DllImport("DotPadSDK-1.1.0.dll")]
         public static extern ERROR_CODE DOT_PAD_INIT_WITH_DEVICE_TYPE(int portNumber, int deviceType);
 
-        [DllImport("DotPadSDK-1.1.1.dll")]
+        [DllImport("DotPadSDK-1.1.0.dll")]
         public static extern ERROR_CODE DOT_PAD_DEINIT();
 
         // 20셀 점자 표시
-        [DllImport("DotPadSDK-1.1.1.dll", CharSet = CharSet.Unicode)]
+        [DllImport("DotPadSDK-1.1.0.dll", CharSet = CharSet.Unicode)]
         public static extern ERROR_CODE DOT_PAD_BRAILLE_DISPLAY(StringBuilder input, int language, int engine);
 
-        [DllImport("DotPadSDK-1.1.1.dll")]
+        [DllImport("DotPadSDK-1.1.0.dll")]
         public static extern ERROR_CODE DOT_PAD_DISPLAY_DATA(byte[] data, int len);
 
-        [DllImport("DotPadSDK-1.1.1.dll")]
+        [DllImport("DotPadSDK-1.1.0.dll")]
         public static extern ERROR_CODE DOT_PAD_DISPLAY(string filePath);
 
         // 그래픽영역 초기화
-        [DllImport("DotPadSDK-1.1.1.dll")]
+        [DllImport("DotPadSDK-1.1.0.dll")]
         public static extern ERROR_CODE DOT_PAD_RESET_DISPLAY();
 
         // 점역영역 초기화
-        [DllImport("DotPadSDK-1.1.1.dll")]
+        [DllImport("DotPadSDK-1.1.0.dll")]
         public static extern ERROR_CODE DOT_PAD_RESET_BRAILLE_DISPLAY();
     }
 }
