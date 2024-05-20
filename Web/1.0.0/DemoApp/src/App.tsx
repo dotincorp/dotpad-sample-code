@@ -50,7 +50,7 @@ export default function DotPad()
   const handlePrintDevice = async () => 
   {
     devices.map(async (device) => {
-      await dotpadsdk.current?.print(device, DotPadSample.SAMPLE3, "text");
+      await dotpadsdk.current?.print(device, DotPadSample.SAMPLE2, "graphic");
     });
   };
 
