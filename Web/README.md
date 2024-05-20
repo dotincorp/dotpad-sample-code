@@ -1,8 +1,7 @@
 # DotPad SDK Sample Code for Web
 
 ## Overview
-* An Sample Applicaton using the DotPadSDK from [dotpad-sdk-guide](https://github.com/dotincorp/dotpad-sdk-guide)
-* Can perform controls on a Dot Pad connected via Serial Port
+* An Sample Applicaton using the DotPadSDK from [dotpad-sdk-guide](https://github.com/dotincorp/dotpad-sdk-guide/tree/main/Web)
 
 ## Directory
 ```
