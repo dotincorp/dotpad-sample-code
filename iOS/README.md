@@ -1,4 +1,4 @@
-# DotPadSDK Sample Code for iOS
+# DotPad SDK Sample Code for iOS
 
 ## Overview
 * An Sample Applicaton using the DotPadSDK from [dotpad-sdk-guide](https://github.com/dotincorp/dotpad-sdk-guide)
