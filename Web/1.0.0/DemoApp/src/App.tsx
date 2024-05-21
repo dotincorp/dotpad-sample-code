@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { DotPadSDK, DotPadSample } from "./DotPadSDK-1.0.0-min"
+import { DotPadSDK, DotPadSample } from "./DotPadSDK-1.0.0"
 import "./App.css";
 
 export default function DotPad() 
