@@ -4,8 +4,8 @@
 class ExternalSender : public SendDataProtocol {
 public:
     void sendDataFunc(DataCodes dataCode, const std::string& dataStr) override {
-        // 데이터를 처리하는 코드를 구현합니다.
-        std::cout << "Received data from DotProcess: Data Code = " << int(dataCode) << ", Data String = " << dataStr << std::endl;
+        // Handle the callback event
+        std::cout << "Received dataCode: " << int(dataCode) << ", dataStr: " << dataStr << std::endl;
     }
 };
 
@@ -36,7 +36,7 @@ int main()
         if (input == "close") {
             break;
         } else if (input == "refresh") {
-            dotAPI->setRefresh(3, 1);
+            dotAPI->setRefresh(3, 1000);
         } else if (input == "next") {
             dotAPI->displayTextDataNext();
         } else if (input == "prev") {
