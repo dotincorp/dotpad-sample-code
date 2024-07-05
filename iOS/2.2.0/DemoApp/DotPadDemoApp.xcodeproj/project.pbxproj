@@ -34,7 +34,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0A082F5A2C376A8F00FFD2A8 /* DotPadDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = DotPadDemoApp.app; path = "/Volumes/data/work/git/github.dotpad-sample-code/iOS/2.2.0/DemoApp/build/Debug-iphoneos/DotPadDemoApp.app"; sourceTree = "<absolute>"; };
+		0A082F5F2C37E88100FFD2A8 /* DotPadDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotPadDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A6031B02C362EE9004623EE /* DotPadFrameworks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DotPadFrameworks.framework; path = Frameworks/DotPadFrameworks.framework; sourceTree = "<group>"; };
 		84DAD381299F646600B2C62B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BA2D4119279829440075DECC /* BLEPeripheralCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEPeripheralCell.swift; sourceTree = "<group>"; };
@@ -72,6 +72,7 @@
 			children = (
 				BAC5C7B4278D51160040F1BB /* DotPadDemoApp */,
 				0A6031AF2C362EE9004623EE /* Frameworks */,
+				0A082F5F2C37E88100FFD2A8 /* DotPadDemoApp.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,7 +110,7 @@
 			);
 			name = DotPadDemoApp;
 			productName = DotPadDemoApp;
-			productReference = 0A082F5A2C376A8F00FFD2A8 /* DotPadDemoApp.app */;
+			productReference = 0A082F5F2C37E88100FFD2A8 /* DotPadDemoApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -351,7 +352,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dotincorp.DotPadDemoApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_INCLUDE_PATHS = "${SRCROOT}/BrailleEngine";
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Frameworks/BrailleEngine";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -397,7 +398,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dotincorp.DotPadDemoApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_INCLUDE_PATHS = "${SRCROOT}/BrailleEngine";
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}/Frameworks/BrailleEngine";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
