@@ -19,12 +19,13 @@
     ![Xcode](images/xcode.png)    
 
 ## Demo app screen
-- dotpad 320
-  ![Screen DotPad-320](images/screen-320.png)
-  ![Device DotPad-320](images/device-320.png)  
-- km2-20
-  ![Screen Km2-20](images/screen-20.png)  
-  ![Device km2-20](images/device-20.png)  
+- DotPad-320 <br>
+<img src="images/screen-320.png" alt="Screen DotPad-320" width="600"><br>
+<img src="images/device-320.png" alt="Device DotPad-320" width="600"><br>
+
+- KM2-20<br>
+<img src="images/screen-20.png" alt="Screen KM2-20" width="600"><br>
+<img src="images/device-20.png" alt="Screen KM2-20" width="600"><br>
 
 ## Error Resolution
 * Module not found error  
