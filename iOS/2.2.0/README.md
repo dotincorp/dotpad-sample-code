@@ -17,9 +17,14 @@
 3. Connect your device (iPhone, iPad) to your MacBook.
 4. In xcode, specify the target as the connected device and Build.  
     ![Xcode](images/xcode.png)    
-5. Demo app screen  
-   ![iPhone](images/iphone.jpg)  
-   ![Dot Pad](images/dotpad.jpg)  
+
+## Demo app screen
+- dotpad 320
+  ![Screen DotPad-320](images/screen-320.png)
+  ![Device DotPad-320](images/device-320.png)  
+- km2-20
+  ![Screen Km2-20](images/screen-20.png)  
+  ![Device km2-20](images/device-20.png)  
 
 ## Error Resolution
 * Module not found error  
