@@ -20,7 +20,7 @@ npm start
 ```
 
 ## Screenshots
-1. Launch Chrome web browser (Works only on Chrome browser)
+1. Launch Chrome web browser (Works only on Chrome browser)  
 ![Access the site](images/screen01.png)
 
 2. Access the site  
