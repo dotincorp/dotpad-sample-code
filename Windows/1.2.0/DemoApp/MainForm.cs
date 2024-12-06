@@ -32,12 +32,11 @@ namespace demo.app
             //displayBraille(value);
         }
 
-        private static void displayBraille(int keyCode)
+        private static void displayBraille()
         {
             Random random = new Random();
-            int randomNumber = random.Next(1, 1000);
             StringBuilder input = new StringBuilder();
-            input.Append(randomNumber + "test" + keyCode);
+            input.Append("You should receive your letter tomorrow afternoon.");
             DotPadSDK.DOT_PAD_BRAILLE_DISPLAY(input, 5);
         }
 
@@ -350,7 +349,7 @@ namespace demo.app
 
         private void buttonDotPad20Braille_Click(object sender, EventArgs e)
         {
-            displayBraille(1);
+            displayBraille();
         }
 
         private void timerKeyCode_Tick(object sender, EventArgs e)
@@ -366,10 +365,8 @@ namespace demo.app
         private void dequeueKeyCodeEvent()
         {
             if (numbersQueue.Count > 0) {
-                resetBraille();
-                Thread.Sleep(1000);
                 int keyCode = numbersQueue.Dequeue();
-                displayBraille(keyCode);
+                DotPadSDK.DOT_PAD_SEND_KEY(keyCode);
             }
         }
 
