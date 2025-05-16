@@ -12,7 +12,10 @@
 │   ├── DemoApp
 ├── 1.2.0
 │   ├── DemoApp
+├── 1.4.0
+│   ├── DemoApp
 ```
 
 ## History
 * 2024-08-09 / add km3-12 ble device (1.2.0)
+* 2025-05-16 / add multi key callback function (1.4.0)
