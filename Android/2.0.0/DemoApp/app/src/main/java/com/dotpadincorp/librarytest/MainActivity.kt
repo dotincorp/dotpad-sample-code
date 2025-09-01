@@ -33,13 +33,12 @@ import com.dotincorp.sdk.util.BrailleUtil
 import com.dotpadincorp.librarytest.adapter.BleListAdapter
 import com.dotpadincorp.librarytest.viewmodel.SubViewModel
 
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.dotpadincorp.librarytest.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), DotDeviceMessage {
     private val TAG = "MainActivity"
 
-    private val viewModel by viewModel<SubViewModel>()
+    private var viewModel: SubViewModel? = null
     private var adapter: BleListAdapter? = null
 
     private var btnScan: AppCompatButton? = null
@@ -53,6 +52,7 @@ class MainActivity : AppCompatActivity(), DotDeviceMessage {
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(saveInstanceState: Bundle?){
         super.onCreate(saveInstanceState)
+        viewModel = SubViewModel(BleRepository(application))
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(
             this,
             R.layout.activity_main
@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity(), DotDeviceMessage {
         adapter?.setItemClickListener(object : BleListAdapter.ItemClickListener {
             override fun onClick(view: View, device: BluetoothDevice?) {
                 if (device != null) {
-                    viewModel.connectDevice(device)
+                    viewModel?.connectDevice(device)
                 }
             }
         })
@@ -97,41 +97,41 @@ class MainActivity : AppCompatActivity(), DotDeviceMessage {
 //                viewModel.mDotPadProcess.displayBrailleData()
 
                 //setTextToBrailleText + displayBrailleData = displayTextData
-                viewModel.mDotPadProcess.displayTextData(getEditText)
+                viewModel?.mDotPadProcess?.displayTextData(getEditText)
             }
         }
 
         initObserver(binding)
 
-        viewModel.mDotPadProcess.setCallBack(this)
+        viewModel?.mDotPadProcess?.setCallBack(this)
     }
 
     private fun initObserver(binding: ActivityMainBinding){
 
-        viewModel.requestEnableBLE.observe(this, {
+        viewModel?.requestEnableBLE?.observe(this, {
             it.getContentIfNotHandled()?.let {
                 requestEnableBLE()
             }
         })
-        viewModel.listUpdate.observe(this, {
+        viewModel?.listUpdate?.observe(this, {
             it.getContentIfNotHandled()?.let { scanResults ->
                 adapter?.setItem(scanResults)
             }
         })
 
-        viewModel._isScanning.observe(this,{
+        viewModel?._isScanning?.observe(this,{
             it.getContentIfNotHandled()?.let{ scanning->
-                viewModel.isScanning.set(scanning)
+                viewModel?.isScanning?.set(scanning)
             }
         })
 
-        viewModel.statusTxt.observe(this,{
+        viewModel?.statusTxt?.observe(this,{
 
             binding.statusText.text = it
 
         })
 
-        viewModel.readTxt.observe(this,{
+        viewModel?.readTxt?.observe(this,{
 
             binding.txtRead.append(it)
 
@@ -238,7 +238,7 @@ class MainActivity : AppCompatActivity(), DotDeviceMessage {
         Handler(Looper.getMainLooper()).postDelayed({
             Log.d(TAG, "postDelayed: ")
             // device name
-            viewModel.mDotPadProcess.requestDeviceName()
+            viewModel?.mDotPadProcess?.requestDeviceName()
         }, 1000)
     }
 

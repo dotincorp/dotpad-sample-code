@@ -59,9 +59,11 @@ class SubViewModel(val bleRepository: BleRepository) : ViewModel() {
     }
     fun onClickAllUp(){
         mDotPadProcess.displayGraphicAllUp()
+        mDotPadProcess.displayTextDataLine(0, 0, "FFFFFFFF")
     }
     fun onClickAllDown(){
         mDotPadProcess.displayGraphicAllDown()
+        mDotPadProcess.displayTextDataLine(0, 1, "00")
     }
     fun onClickSendSampleDTM() {
         val sampleData =
