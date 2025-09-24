@@ -217,6 +217,9 @@ class MainActivity : AppCompatActivity(), DotDeviceMessage {
             DataCodes.DeviceName -> getDeviceName(msg)
             DataCodes.DeviceAuxiliaryKeyRightPress -> setDevicePannigKeyPress(msg)
             DataCodes.DeviceFunctionKey1stLeftPress -> setDeviceFuntionKeyPress(msg)
+
+            // Output is available only after the device is connected and the DataCodes.BoardInfo callback has been received.
+            DataCodes.BoardInfo -> viewModel?.outputReady = true
         }
     }
 
@@ -250,6 +253,8 @@ class MainActivity : AppCompatActivity(), DotDeviceMessage {
 
     fun getDisconnected() {
         Log.d(TAG, "getDisconnected: ")
+
+        viewModel?.outputReady = false
 
         //change button status
         btnScan?.background = ContextCompat.getDrawable(this, R.drawable.button_back)

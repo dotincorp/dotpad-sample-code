@@ -38,6 +38,8 @@ class SubViewModel(val bleRepository: BleRepository) : ViewModel() {
         get() = bleRepository.isScanning
     var isScanning = ObservableBoolean(false)
 
+    var outputReady:Boolean = false
+
     /**
      *  Dot Pad ProcessData
      */
@@ -58,14 +60,23 @@ class SubViewModel(val bleRepository: BleRepository) : ViewModel() {
         mDotPadProcess.connect(bluetoothDevice, MyApplication.instance)
     }
     fun onClickAllUp(){
+        if (!outputReady)
+            return
+
         mDotPadProcess.displayGraphicAllUp()
         mDotPadProcess.displayTextDataLine(0, 0, "FFFFFFFF")
     }
     fun onClickAllDown(){
+        if (!outputReady)
+            return
+
         mDotPadProcess.displayGraphicAllDown()
         mDotPadProcess.displayTextDataLine(0, 1, "00")
     }
     fun onClickSendSampleDTM() {
+        if (!outputReady)
+            return
+
         val sampleData =
                     "00000000000000000000000000000080CC6E170000000000000000000000" +
                     "000000000000000000008888888C047C7F13000000000000000000000000" +
