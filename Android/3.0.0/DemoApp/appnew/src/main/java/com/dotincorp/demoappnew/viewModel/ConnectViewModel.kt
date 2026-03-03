@@ -76,7 +76,7 @@ class ConnectViewModel(application: Application) : AndroidViewModel(application)
                         // 연결된 기기 목록 갱신
                         _connectedDevices.value = DotPadProcess.getConnectedDevices()
                     }
-                    DataCodes.ConnectedFail ,DataCodes.BoardInfo ,DataCodes.BleMacAddress ,DataCodes.DeviceName ,DataCodes.DeviceFWVersion ,DataCodes.DeviceHWVersion ,DataCodes.ResponseDisplayLineAck ,DataCodes.ResponseDisplayLineNonAck ,DataCodes.ResponseDisplayLineComplete ,DataCodes.CommandError ,DataCodes.CommandNone ,DataCodes.CommandSendFail -> ""
+                    DataCodes.ConnectedFail ,DataCodes.BoardInfo ,DataCodes.BleMacAddress ,DataCodes.DeviceName ,DataCodes.DeviceFWVersion ,DataCodes.DeviceHWVersion ,DataCodes.ResponseDisplayLineAck ,DataCodes.ResponseDisplayLineNonAck ,DataCodes.ResponseDisplayLineComplete ,DataCodes.CommandError ,DataCodes.CommandNone ,DataCodes.CommandSendFail, DataCodes.ConnectionStateChangeError -> ""
                 }
             }
 
