@@ -8,22 +8,35 @@
 ## Directory
 ```
 ├── Android
-│   ├── 1.1.0
-│   │   ├── DemoApp
-│   ├── 2.0.0
-│   │   └── DemoApp
+│    ├── 1.1.0
+│    │   └── DemoApp
+│    └── 2.0.0
+│        └── DemoApp
 ├── iOS
-│   ├── 1.2.0
-│   │   ├── DemoApp
-│   ├── 2.0.0
-│   │   └── DemoApp
-├── Window
-│    ├── 1.0.0
-│    │   └── DempApp
-│    └── 1.1.0
-│       └── DempApp
-└──  Linux
-     └── 1.0.0 (in development)
+│    ├── 1.2.0
+│    │   └── DemoApp
+│    ├── 2.0.0
+│    │   └── DemoApp
+│    ├── 2.1.0
+│    │   └── DemoApp
+│    └── 2.2.0
+│        └── DemoApp
+├──  Linux
+│    └── 1.0.0 (in development)
+│        └── DempApp
+├──  Python
+│    └── 1.0.0 (in development)
+│        └── DempApp
+├──  Web
+│    └── 1.0.0 (in development)
+│        └── DempApp
+└──  Windows
+     └── 1.0.0
+         └── DempApp
+     └── 1.1.0 
+         └── DempApp
+     └── 1.2.0 
+         └── DempApp
 ```
 
 ## Development Tools
@@ -31,5 +44,7 @@
 |----------|----------|----------|
 | Android  | Android Studio   | Kotlin   |
 | iOS   | Xcode  | Swift   |
-| Windows   | Visual Studio  | C++, C#   |
 | Linux   | Visual Studio Code  | C++   |
+| Python   | Visual Studio Code  | Python   |
+| Web   |  Visual Studio Code | js   |
+| Windows   | Visual Studio  | C++, C#   |
