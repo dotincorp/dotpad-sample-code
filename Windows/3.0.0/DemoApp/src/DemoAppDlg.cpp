@@ -1,4 +1,4 @@
-
+﻿
 // DemoAppDlg.cpp: 구현 파일
 //
 
@@ -109,12 +109,32 @@ LRESULT CDemoAppDlg::OnBleDeviceFound(WPARAM wParam, LPARAM lParam)
 }
 
 LRESULT CDemoAppDlg::OnDotPadSendKey(WPARAM wParam, LPARAM lParam) {
-	// 키 입력은 새로운 API에서 콜백으로 처리되므로 여기서는 처리하지 않음
+	// wParam: deviceHandle, lParam: DOT_KEY_CODE
+	void* deviceHandle = reinterpret_cast<void*>(wParam);
+	DOT_KEY_CODE keyCode = static_cast<DOT_KEY_CODE>(static_cast<int>(lParam));
+
+	if (keyCode == DOT_KEY_CODE_PANNING_LEFT) {
+		ShowPrevBraille(deviceHandle);
+		return 0;
+	}
+	if (keyCode == DOT_KEY_CODE_PANNING_RIGHT) {
+		ShowNextBraille(deviceHandle);
+		return 0;
+	}
+
+	CString msg;
+	msg.Format(_T("KeyCode: %d"), (int)keyCode);
+	AfxMessageBox(msg);
 	return 0;
 }
 
 LRESULT CDemoAppDlg::OnUpdateDeviceList(WPARAM wParam, LPARAM lParam)
 {
+	// CONNECTED 이벤트일 때는 wParam으로 deviceHandle이 전달된다.
+	if (wParam != 0) {
+		void* deviceHandle = reinterpret_cast<void*>(wParam);
+		OnDeviceConnected(deviceHandle);
+	}
 	UpdateConnectedDeviceList();
 	return 0;
 }
@@ -248,6 +268,7 @@ void CDemoAppDlg::LoadDotPadDLL() {
 	dot_pad_get_connected_device_handle = (DOT_PAD_GET_CONNECTED_DEVICE_HANDLE_FUNC)GetProcAddress(m_hDotPadDLL, "DOT_PAD_GET_CONNECTED_DEVICE_HANDLE");
 	dot_pad_get_device_name = (DOT_PAD_GET_DEVICE_NAME_FUNC)GetProcAddress(m_hDotPadDLL, "DOT_PAD_GET_DEVICE_NAME");
 	dot_pad_get_fw_version = (DOT_PAD_GET_FW_VERSION_FUNC)GetProcAddress(m_hDotPadDLL, "DOT_PAD_GET_FW_VERSION");
+	dot_pad_get_hw_version = (DOT_PAD_GET_HW_VERSION_FUNC)GetProcAddress(m_hDotPadDLL, "DOT_PAD_GET_HW_VERSION");
 
 	// 스캔
 	dot_pad_ble_scan = (DOT_PAD_BLE_SCAN_FUNC)GetProcAddress(m_hDotPadDLL, "DOT_PAD_BLE_SCAN");
@@ -327,6 +348,7 @@ void CDemoAppDlg::FreeDotPadDLL() {
 	dot_pad_get_connected_device_handle = NULL;
 	dot_pad_get_device_name = NULL;
 	dot_pad_get_fw_version = NULL;
+	dot_pad_get_hw_version = NULL;
 	dot_pad_ble_scan = NULL;
 	dot_pad_ble_scan_stop = NULL;
 	dot_pad_usb_scan = NULL;
@@ -352,65 +374,45 @@ void CDemoAppDlg::OnBnClickedButtonInit() {
 	CString selectedText;
 	pComboBox->GetLBText(selectedIndex, selectedText);
 
-	void* deviceHandle = nullptr;
-	CString connectionInfo;
-	
 	if (selectedText == _T("Serial")) {
 		if (dot_pad_connect_serial == NULL) {
-			CString str;
-			str.Format(_T("Loading DLL is fail"));
-			AfxMessageBox(str);
+			AfxMessageBox(_T("Loading DLL is fail"));
 			return;
 		}
 
 		CString strCOMport;
 		((CEdit*)GetDlgItem(IDC_EDIT_COM_PORT))->GetWindowText(strCOMport);
-		
-		// COM 포트 형식 변환 (예: "3" -> "COM3")
+
 		CString portName;
 		portName.Format(_T("COM%s"), strCOMport);
 
-		deviceHandle = dot_pad_connect_serial(portName);
-		connectionInfo = portName;  // 연결 정보 저장
+		m_pendingConnectionInfo = portName;
+		dot_pad_connect_serial(portName);
+		AfxMessageBox(_T("연결 중... (연결 완료 시 목록에 표시됩니다)"));
 	}
 	else if (selectedText == _T("BluetoothLE")) {
 		if (dot_pad_connect_ble == NULL) {
-			CString str;
-			str.Format(_T("Loading DLL is fail"));
-			AfxMessageBox(str);
+			AfxMessageBox(_T("Loading DLL is fail"));
 			return;
 		}
 
 		CListBox* pListBox = (CListBox*)GetDlgItem(IDC_LIST_BLE);
 		if (pListBox == nullptr) return;
 
-		int selectedIndex = pListBox->GetCurSel();
-		if (selectedIndex == LB_ERR) {
+		int selIdx = pListBox->GetCurSel();
+		if (selIdx == LB_ERR) {
 			AfxMessageBox(_T("BLE 기기를 선택해주세요."));
 			return;
 		}
 
-		DWORD_PTR deviceIndex = pListBox->GetItemData(selectedIndex);
-
-		if (deviceIndex >= bleDevices.size()) return;
+		DWORD_PTR deviceIndex = pListBox->GetItemData(selIdx);
+		if (deviceIndex >= (DWORD_PTR)bleDevices.size()) return;
 
 		CString selectedDevice = bleDevices[deviceIndex];
-		deviceHandle = dot_pad_connect_ble(selectedDevice);
-		connectionInfo = selectedDevice;  // 연결 정보 저장
-	}
-
-	CString str;
-	if (deviceHandle != nullptr) {
-		// 연결 정보를 맵에 저장
-		m_deviceConnectionInfo[deviceHandle] = connectionInfo;
-		
-		str.Format(_T("연결 성공"));
-		AfxMessageBox(str);
+		m_pendingConnectionInfo = selectedDevice;
+		dot_pad_connect_ble(selectedDevice);
+		AfxMessageBox(_T("연결 중... (연결 완료 시 목록에 표시됩니다)"));
 		OnBnClickedScanStop();
-	}
-	else {
-		str.Format(_T("연결 실패"));
-		AfxMessageBox(str);
 	}
 }
 
@@ -645,6 +647,41 @@ void CDemoAppDlg::OnBnClickedButtonPrev() {
 		AfxMessageBox(_T("이전/다음은 기기 하나를 선택한 상태에서만 동작합니다."), MB_OK);
 		return;
 	}
+	ShowPrevBraille(deviceHandle);
+
+}
+
+void CDemoAppDlg::OnBnClickedButtonNext() {
+	if (dot_pad_braille_display_data == NULL || dot_pad_get_display_info == NULL) {
+		AfxMessageBox(_T("DLL 함수를 사용할 수 없습니다."), MB_OK);
+		return;
+	}
+	void* deviceHandle = GetSelectedDeviceHandle();
+	if (deviceHandle == nullptr) {
+		AfxMessageBox(_T("이전/다음은 기기 하나를 선택한 상태에서만 동작합니다."), MB_OK);
+		return;
+	}
+	ShowNextBraille(deviceHandle);
+}
+
+void CALLBACK DisplayDialogBoxByKeyNoti(void* deviceHandle, DOT_KEY_CODE keyCode, const char* message) {
+	if (g_hWnd == NULL || *g_hWnd == NULL) return;
+
+	// 콜백 스레드에서 UI를 건드리지 않도록, deviceHandle/keyCode를 UI 스레드로 전달한다.
+	// (SendMessage는 UI 스레드에서 메시지 핸들러가 실행되도록 보장)
+	SendMessage(*g_hWnd, DOT_PAD_KEY, (WPARAM)deviceHandle, (LPARAM)keyCode);
+}
+
+void CDemoAppDlg::ShowPrevBraille(void* deviceHandle)
+{
+	if (dot_pad_braille_display_data == NULL || dot_pad_get_display_info == NULL) {
+		AfxMessageBox(_T("DLL 함수를 사용할 수 없습니다."), MB_OK);
+		return;
+	}
+	if (deviceHandle == nullptr) {
+		AfxMessageBox(_T("기기를 선택해주세요."), MB_OK);
+		return;
+	}
 	auto it = m_deviceBrailleData.find(deviceHandle);
 	if (it == m_deviceBrailleData.end() || it->second.empty()) {
 		AfxMessageBox(_T("저장된 점자 데이터가 없습니다. 먼저 문자열 표시를 실행하세요."), MB_OK);
@@ -672,22 +709,21 @@ void CDemoAppDlg::OnBnClickedButtonPrev() {
 		AfxMessageBox(_T("이전 구간이 없습니다."), MB_OK);
 		return;
 	}
-	
+
 	bool success = dot_pad_braille_display_data(&data[idx], len, deviceHandle);
 	if (!success) {
 		AfxMessageBox(_T("이전 점자 표시 실패."), MB_OK);
 	}
-
 }
 
-void CDemoAppDlg::OnBnClickedButtonNext() {
+void CDemoAppDlg::ShowNextBraille(void* deviceHandle)
+{
 	if (dot_pad_braille_display_data == NULL || dot_pad_get_display_info == NULL) {
 		AfxMessageBox(_T("DLL 함수를 사용할 수 없습니다."), MB_OK);
 		return;
 	}
-	void* deviceHandle = GetSelectedDeviceHandle();
 	if (deviceHandle == nullptr) {
-		AfxMessageBox(_T("이전/다음은 기기 하나를 선택한 상태에서만 동작합니다."), MB_OK);
+		AfxMessageBox(_T("기기를 선택해주세요."), MB_OK);
 		return;
 	}
 	auto it = m_deviceBrailleData.find(deviceHandle);
@@ -726,24 +762,23 @@ void CDemoAppDlg::OnBnClickedButtonNext() {
 		AfxMessageBox(_T("다음 점자 표시 실패."), MB_OK);
 }
 
-void CALLBACK DisplayDialogBoxByKeyNoti(void* deviceHandle, DOT_KEY_CODE keyCode, const char* message) {
-	CString msg;
-	if (message != nullptr) {
-		int keyValue = atoi(message);
-		msg.Format(_T("Key: %02X"), keyValue);
-		AfxMessageBox(msg);
-	}
-	SendMessage(*g_hWnd, DOT_PAD_KEY, keyCode, 0);
-}
-
 void CALLBACK DisplayDialogBoxByMessageNoti(void* deviceHandle, DOT_DATA_CODE dataCode, const char* message){
-	if (dataCode == DOT_DATA_CODE::DOT_DATA_CODE_CONNECTED || dataCode == DOT_DATA_CODE_DISCONNECTED) {
+	// 콜백은 SDK 워커 스레드에서 호출되므로, UI 갱신은 반드시 메시지로 UI 스레드에 넘긴다.
+	if (dataCode == DOT_DATA_CODE::DOT_DATA_CODE_CONNECTED) {
 		if (g_hWnd != NULL && *g_hWnd != NULL) {
+			// deviceHandle을 같은 메시지에 실어서 UI 스레드에서 매핑/리스트 갱신한다.
+			PostMessage(*g_hWnd, WM_USER_UPDATE_DEVICE_LIST, (WPARAM)deviceHandle, 0);
+		}
+	}
+	else if (dataCode == DOT_DATA_CODE::DOT_DATA_CODE_DISCONNECTED) {
+		if (g_hWnd != NULL && *g_hWnd != NULL) {
+			// DISCONNECTED는 매핑 없이 리스트만 갱신한다.
 			PostMessage(*g_hWnd, WM_USER_UPDATE_DEVICE_LIST, 0, 0);
 		}
 	}
 	else if (dataCode == DOT_DATA_CODE::DOT_DATA_CODE_DEVICE_FW_VERSION
 		|| dataCode == DOT_DATA_CODE::DOT_DATA_CODE_DEVICE_NAME
+		|| dataCode == DOT_DATA_CODE::DOT_DATA_CODE_DEVICE_HW_VERSION
 		) {
 		if (message != nullptr) {
 			CStringW wmsg(CA2W(message, CP_UTF8));
@@ -1014,4 +1049,13 @@ void* CDemoAppDlg::GetSelectedDeviceHandle()
 void CDemoAppDlg::OnBnClickedButtonRefreshDevices()
 {
 	UpdateConnectedDeviceList();
+}
+
+void CDemoAppDlg::OnDeviceConnected(void* deviceHandle)
+{
+	if (deviceHandle == nullptr) return;
+	if (!m_pendingConnectionInfo.IsEmpty()) {
+		m_deviceConnectionInfo[deviceHandle] = m_pendingConnectionInfo;
+		m_pendingConnectionInfo.Empty();
+	}
 }

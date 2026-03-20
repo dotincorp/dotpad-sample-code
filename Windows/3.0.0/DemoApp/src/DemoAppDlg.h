@@ -86,6 +86,8 @@ protected:
 	std::vector<CString> m_connectedDeviceNames;
 	// deviceHandle과 연결 시 사용한 포트명/블루투스 기기명 매핑
 	std::map<void*, CString> m_deviceConnectionInfo;
+	// 비동기 연결 시 사용한 포트/기기명 (CONNECTED 콜백에서 deviceHandle과 매핑)
+	CString m_pendingConnectionInfo;
 
 	// 디바이스별 점역된 점자 데이터 (DOT_PAD_BRAILLE_DISPLAY 콜백으로 수신)
 	std::map<void*, std::vector<uint8_t>> m_deviceBrailleData;
@@ -130,9 +132,15 @@ public:
 	void UpdateConnectedDeviceList();
 	// 선택한 기기의 handle 가져오기 (nullptr이면 모든 기기)
 	void* GetSelectedDeviceHandle();
+	// 메시지 콜백에서 DOT_DATA_CODE_CONNECTED 시 호출: 연결 정보 저장 및 목록 갱신
+	void OnDeviceConnected(void* deviceHandle);
 
 	// DOT_PAD_BRAILLE_DISPLAY 콜백에서 호출: 점역된 데이터 저장
 	void OnBrailleTranslatedData(void* deviceHandle, const uint8_t* translatedData, size_t dataSize);
+
+	// 특정 디바이스에 Prev/Next 점자 표시
+	void ShowPrevBraille(void* deviceHandle);
+	void ShowNextBraille(void* deviceHandle);
 };
 
 void CALLBACK DisplayDialogBoxByKeyNoti(void* deviceHandle, DOT_KEY_CODE keyCode, const char* message);
