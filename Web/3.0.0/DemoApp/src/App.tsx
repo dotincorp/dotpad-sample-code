@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { DotPadScanner, DotPadSDK, DotDevice, DataCodes, DisplayMode } from "./sdk/DotPadSDK-2.0.0";
+import { DotPadScanner, DotPadSDK, DotDevice, DataCodes, DisplayMode } from "./sdk/DotPadSDK-3.0.0";
 import "./App.css";
 
 export default function DotPad() {
@@ -92,8 +92,8 @@ export default function DotPad() {
   };
 
   // Function to print a portion of the graphic area (300 cells) - all devices
-  const handleCell300PartialPrint = async (lineId: number, cellIndex: number, hexData: string) => {
-      dotpadsdk.current?.displayLineData(1, 0, "", DisplayMode.GraphicMode);
+  const handleCell300PartialPrint = async (lineId: number, cellIndex: number, hexData: string, displayMode: string = DisplayMode.GraphicMode) => {
+      dotpadsdk.current?.displayLineData(lineId, cellIndex, hexData, displayMode);
   };
 
   // Function to reset the graphic area (300 cells) - all devices
@@ -260,7 +260,7 @@ export default function DotPad() {
               Print Full Image
             </button>
             <button className="printButton" onClick={() => {
-              handleCell300PartialPrint(3, 5, CELL300_GRAPHIC_PARTIAL);
+              handleCell300PartialPrint(3, 5, CELL300_GRAPHIC_PARTIAL, DisplayMode.GraphicMode);
             }}>
               Print Partial Image
             </button>
@@ -270,7 +270,7 @@ export default function DotPad() {
               Print Full Braille
             </button>
             <button className="printButton" onClick={() => {
-              handleCell300PartialPrint(3, 10, CELL300_TEXT_PARTIAL);
+              handleCell300PartialPrint(3, 10, CELL300_TEXT_PARTIAL, DisplayMode.TextMode);
             }}>
               Print Partial Braille
             </button>
